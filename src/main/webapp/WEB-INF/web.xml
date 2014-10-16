@@ -12,4 +12,14 @@
         <welcome-file>com/up_and_running/ch1/predictions.jsp</welcome-file>
     </welcome-file-list>
 
+    <servlet>
+        <servlet-name>predications</servlet-name>
+        <jsp-file>/com/up_and_running/ch1/predictions.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>predications</servlet-name>
+        <url-pattern>/predications</url-pattern>
+    </servlet-mapping>
+
 </web-app>
