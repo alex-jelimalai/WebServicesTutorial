@@ -1,0 +1,28 @@
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+atlassian-ide-plugin.xml
+
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+
+# Output
+bin/
+!**/src/**/bin/
+target/
+!**/src/**/target/
+felix-cache/
+jacoco_reports/
+jacoco.exec
+logs/
+!**/src/**/logs/
+
+#Application tmp and created
+*.pdf
+nbactions.xml
+*-sources.jar
