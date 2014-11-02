@@ -22,14 +22,31 @@
         <url-pattern>/predications</url-pattern>
     </servlet-mapping>
 
-  <servlet>
+    <servlet>
         <servlet-name>predications2</servlet-name>
-       <servlet-class>com.up_and_running.ch2.prediction.PredictionsServlet</servlet-class>
+        <servlet-class>com.up_and_running.ch2.prediction.PredictionsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>predications2</servlet-name>
         <url-pattern>/predications2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>jersey</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <!-- Important bit -->
+            <param-value>com.up_and_running</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jersey</servlet-name>
+        <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
 
 </web-app>
