@@ -1,4 +1,4 @@
-package com.up_and_running.ch2.prediction;
+package com.up_and_running.ch2.prediction2;
 
 import java.io.Serializable;
 
