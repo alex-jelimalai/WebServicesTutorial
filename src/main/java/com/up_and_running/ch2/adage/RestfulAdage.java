@@ -8,8 +8,7 @@ import javax.ws.rs.core.Application;
 import com.google.common.collect.ImmutableSet;
 
 /**
- * This class is not used as all classes are scanned by the framework. The scanning path is specified in the web.xml file
- * 
+ *
  * @author Alexandr Jelimalai
  */
 @ApplicationPath("/resourcesA")
