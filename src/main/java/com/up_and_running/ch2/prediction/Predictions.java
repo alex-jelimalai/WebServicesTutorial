@@ -1,4 +1,4 @@
-package com.up_and_running.ch2;
+package com.up_and_running.ch2.prediction;
 
 import java.beans.XMLEncoder;
 import java.io.BufferedReader;
