@@ -4,20 +4,20 @@ http://localhost:8080/WebServicesTutorial/predications - implemented with JSP
 ch2:
 predictions:
 http://localhost:8080/WebServicesTutorial/predications2 - implemented with Servlet
-http://localhost:8080/WebServicesTutorial/jaxws/prediction3/xml - implemented with JAX-WS
-http://localhost:8080/WebServicesTutorial/jaxws/prediction3/json - implemented with JAX-WS
-http://localhost:8080/WebServicesTutorial/jaxws/prediction3/plain- implemented with JAX-WS
-http://localhost:8080/WebServicesTutorial/jaxws/prediction3/xml/2 - implemented with JAX-WS where 2 is the id of prediction
-http://localhost:8080/WebServicesTutorial/jaxws/prediction3/json/2 - implemented with JAX-WS where 2 is the id of prediction
-http://localhost:8080/WebServicesTutorial/jaxws/prediction3/create - implemented with JAX-WS. POST request should contain 'who' and 'what' parameters
-http://localhost:8080/WebServicesTutorial/jaxws/prediction3/update - implemented with JAX-WS. PUT request should contain 'id', 'who' and 'what' parameters
-http://localhost:8080/WebServicesTutorial/jaxws/prediction3/delete/{id} - implemented with JAX-WS. DELETE request should contain 'id'  parameter
+http://localhost:8080/WebServicesTutorial/jaxws/prediction3/xml - implemented with JAX-RS
+http://localhost:8080/WebServicesTutorial/jaxws/prediction3/json - implemented with JAX-RS
+http://localhost:8080/WebServicesTutorial/jaxws/prediction3/plain- implemented with JAX-RS
+http://localhost:8080/WebServicesTutorial/jaxws/prediction3/xml/2 - implemented with JAX-RS where 2 is the id of prediction
+http://localhost:8080/WebServicesTutorial/jaxws/prediction3/json/2 - implemented with JAX-RS where 2 is the id of prediction
+http://localhost:8080/WebServicesTutorial/jaxws/prediction3/create - implemented with JAX-RS. POST request should contain 'who' and 'what' parameters
+http://localhost:8080/WebServicesTutorial/jaxws/prediction3/update - implemented with JAX-RS. PUT request should contain 'id', 'who' and 'what' parameters
+http://localhost:8080/WebServicesTutorial/jaxws/prediction3/delete/{id} - implemented with JAX-RS. DELETE request should contain 'id'  parameter
 
 
 adages:
-http://localhost:8080/WebServicesTutorial/jaxws/adages - implemented with JAX-WS
-http://localhost:8080/WebServicesTutorial/jaxws/adages/json - implemented with JAX-WS
-http://localhost:8080/WebServicesTutorial/jaxws/adages/plain - implemented with JAX-WS
+http://localhost:8080/WebServicesTutorial/jaxws/adages - implemented with JAX-RS
+http://localhost:8080/WebServicesTutorial/jaxws/adages/json - implemented with JAX-RS
+http://localhost:8080/WebServicesTutorial/jaxws/adages/plain - implemented with JAX-RS
 
 http://localhost:8080/WebServicesTutorial/restlet - implemented with Restlet
 http://localhost:8080/WebServicesTutorial/restlet/xml - implemented with Restlet
