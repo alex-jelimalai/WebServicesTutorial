@@ -46,7 +46,22 @@
 
     <servlet-mapping>
         <servlet-name>jersey</servlet-name>
-        <url-pattern>/services/*</url-pattern>
+        <url-pattern>/jaxws/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RestletServlet</servlet-name>
+        <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+        <init-param>
+            <!-- Application class name -->
+            <param-name>org.restlet.application</param-name>
+            <param-value>com.up_and_running.ch2.adage2.AdagesApplication</param-value>
+        </init-param>
+    </servlet>
+    <!-- Dispach all requests to the Restlet servlet. -->
+    <servlet-mapping>
+        <servlet-name>RestletServlet</servlet-name>
+        <url-pattern>/restlet/*</url-pattern>
     </servlet-mapping>
 
 </web-app>
