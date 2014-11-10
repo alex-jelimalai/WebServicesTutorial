@@ -97,6 +97,13 @@
             <artifactId>org.restlet.ext.jackson</artifactId>
             <version>${restlet-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
+
     </dependencies>
 
     <build>
