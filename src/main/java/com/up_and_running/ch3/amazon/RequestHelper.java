@@ -1,4 +1,4 @@
-package com.up_and_running.ch3;
+package com.up_and_running.ch3.amazon;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
