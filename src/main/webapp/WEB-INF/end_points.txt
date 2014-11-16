@@ -26,3 +26,6 @@ http://localhost:8080/WebServicesTutorial/restlet/xml/{id} - implemented with Re
 http://localhost:8080/WebServicesTutorial/restlet/create - implemented with Restlet. POST request. Should contain words parameter
 http://localhost:8080/WebServicesTutorial/restlet/update - implemented with Restlet. PUT request. Should contain words parameter and id of updated adage
 http://localhost:8080/WebServicesTutorial/restlet/delete/{id} - implemented with Restlet. Request. Should id of deleted adage
+
+ch3:
+http://localhost:8080/WebServicesTutorial/com/up_and_running/ch3/cds.html
