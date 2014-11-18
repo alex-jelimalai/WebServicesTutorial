@@ -30,3 +30,6 @@ http://localhost:8080/WebServicesTutorial/restlet/delete/{id} - implemented with
 ch3 -clients:
 http://localhost:8080/WebServicesTutorial/com/up_and_running/ch3/cds.html
 http://localhost:8080/WebServicesTutorial/com/up_and_running/ch3/pollPredictions.html
+
+ch4:
+http://localhost:8080/WebServicesTutorial/soap-jaxws?xsd=1 to see the xsd of the service on this pattern

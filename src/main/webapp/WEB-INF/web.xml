@@ -7,10 +7,15 @@
 
     <display-name>Web Services - Hello World</display-name>
 
-
     <welcome-file-list>
         <welcome-file>com/up_and_running/ch1/predictions.jsp</welcome-file>
     </welcome-file-list>
+
+    <listener>
+        <listener-class>
+            com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+        </listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>predications</servlet-name>
@@ -62,6 +67,18 @@
     <servlet-mapping>
         <servlet-name>RestletServlet</servlet-name>
         <url-pattern>/restlet/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>jaxws</servlet-name>
+        <servlet-class>
+            com.sun.xml.ws.transport.http.servlet.WSServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jaxws</servlet-name>
+        <url-pattern>soap-jaxws/*</url-pattern>
     </servlet-mapping>
 
 </web-app>
