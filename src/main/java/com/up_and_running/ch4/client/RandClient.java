@@ -1,4 +1,4 @@
-package com.up_and_running.ch4.rand2.client;
+package com.up_and_running.ch4.client;
 
 import java.util.List;
 

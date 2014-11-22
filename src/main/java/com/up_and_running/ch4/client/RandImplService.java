@@ -1,4 +1,4 @@
-package com.up_and_running.ch4.rand2.client;
+package com.up_and_running.ch4.client;
 
 import java.net.MalformedURLException;
 import java.net.URL;

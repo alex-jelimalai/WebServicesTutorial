@@ -1,5 +1,5 @@
 
-package com.up_and_running.ch4.rand2.client;
+package com.up_and_running.ch4.client;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

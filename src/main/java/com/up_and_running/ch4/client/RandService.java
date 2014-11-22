@@ -1,4 +1,4 @@
-package com.up_and_running.ch4.rand2.client;
+package com.up_and_running.ch4.client;
 
 import java.util.List;
 
@@ -23,10 +23,10 @@ public interface RandService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "next1", targetNamespace = "http://rand2.ch4.up_and_running.com/", className = "com.up_and_running.ch4.rand2.client.Next1")
+    @RequestWrapper(localName = "next1", targetNamespace = "http://rand2.ch4.up_and_running.com/", className = "com.up_and_running.ch4.client.Next1")
     @ResponseWrapper(localName = "next1Response",
                      targetNamespace = "http://rand2.ch4.up_and_running.com/",
-                     className = "com.up_and_running.ch4.rand2.client.Next1Response")
+                     className = "com.up_and_running.ch4.client.Next1Response")
     @Action(input = "http://rand2.ch4.up_and_running.com/RandService/next1Request", output = "http://rand2.ch4.up_and_running.com/RandService/next1Response")
     public int next1();
 
@@ -37,10 +37,10 @@ public interface RandService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "nextN", targetNamespace = "http://rand2.ch4.up_and_running.com/", className = "com.up_and_running.ch4.rand2.client.NextN")
+    @RequestWrapper(localName = "nextN", targetNamespace = "http://rand2.ch4.up_and_running.com/", className = "com.up_and_running.ch4.client.NextN")
     @ResponseWrapper(localName = "nextNResponse",
                      targetNamespace = "http://rand2.ch4.up_and_running.com/",
-                     className = "com.up_and_running.ch4.rand2.client.NextNResponse")
+                     className = "com.up_and_running.ch4.client.NextNResponse")
     @Action(input = "http://rand2.ch4.up_and_running.com/RandService/nextNRequest", output = "http://rand2.ch4.up_and_running.com/RandService/nextNResponse")
     public List<Integer> nextN(@WebParam(name = "arg0", targetNamespace = "") int arg0);
 
