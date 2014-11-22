@@ -3,5 +3,5 @@
            xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
     <endpoint implementation="com.up_and_running.ch4.rand.RandService"
               name="RandService"
-              url-pattern="/*"/>
+              url-pattern="/soap-jaxws/*"/>
 </endpoints>

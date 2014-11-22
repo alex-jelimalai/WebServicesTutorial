@@ -33,3 +33,5 @@ http://localhost:8080/WebServicesTutorial/com/up_and_running/ch3/pollPredictions
 
 ch4:
 http://localhost:8080/WebServicesTutorial/soap-jaxws?xsd=1 to see the xsd of the service on this pattern
+http://localhost:8080/WebServicesTutorial/soap-jaxws - end point to soap web service
+http://localhost:8080/WebServicesTutorial/soap-jaxws?wsdl - wsdl
