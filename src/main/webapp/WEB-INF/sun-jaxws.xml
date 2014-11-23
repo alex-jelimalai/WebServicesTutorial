@@ -4,4 +4,7 @@
     <endpoint implementation="com.up_and_running.ch4.rand.RandService"
               name="RandService"
               url-pattern="/soap-jaxws/*"/>
+    <endpoint implementation="com.up_and_running.ch5.prediction.server.PredictionsSOAP"
+              name="PredictionSoap"
+              url-pattern="/prediction-soap/*"/>
 </endpoints>
