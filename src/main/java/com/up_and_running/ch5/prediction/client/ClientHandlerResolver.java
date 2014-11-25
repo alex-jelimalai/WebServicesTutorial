@@ -9,12 +9,17 @@ import java.util.TimeZone;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPHeader;
 import javax.xml.soap.SOAPMessage;
+import javax.xml.ws.LogicalMessage;
 import javax.xml.ws.handler.Handler;
 import javax.xml.ws.handler.HandlerResolver;
+import javax.xml.ws.handler.LogicalHandler;
+import javax.xml.ws.handler.LogicalMessageContext;
 import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.handler.PortInfo;
 import javax.xml.ws.handler.soap.SOAPHandler;
@@ -29,8 +34,8 @@ import org.w3c.dom.Node;
  */
 public class ClientHandlerResolver implements HandlerResolver {
 
-    private String name;
-    private String key;
+    private final String name;
+    private final String key;
 
 
     public ClientHandlerResolver(String name, String key) {
@@ -39,8 +44,11 @@ public class ClientHandlerResolver implements HandlerResolver {
     }
 
 
+    @Override
     public List<Handler> getHandlerChain(PortInfo portInfo) {
-        List<Handler> handlerChain = new ArrayList<Handler>();
+        // logical handler executed before soap handler event whey are added in other way
+        List<Handler> handlerChain = new ArrayList<>();
+        handlerChain.add(new IdHandler());
         handlerChain.add(new ClientHashHandler(this.name, this.key));
         return handlerChain;
     }
@@ -49,25 +57,28 @@ public class ClientHandlerResolver implements HandlerResolver {
 
 class ClientHashHandler implements SOAPHandler<SOAPMessageContext> {
 
-    private byte[] secretBytes;
-    private String name;
+    private final byte[] secretBytes;
+    private final String name;
 
 
-    public ClientHashHandler(String name, String key) {
+    ClientHashHandler(String name, String key) {
         this.name = name;
         this.secretBytes = getBytes(key);
     }
 
 
+    @Override
     public void close(MessageContext mCtx) {
     }
 
 
+    @Override
     public Set<QName> getHeaders() {
         return null;
     }
 
 
+    @Override
     public boolean handleFault(SOAPMessageContext mCtx) {
         try {
             SOAPMessage msg = mCtx.getMessage();
@@ -79,6 +90,7 @@ class ClientHashHandler implements SOAPHandler<SOAPMessageContext> {
     }
 
 
+    @Override
     public boolean handleMessage(SOAPMessageContext mCtx) {
         Boolean outbound = (Boolean)mCtx.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
         if (outbound) {
@@ -118,8 +130,7 @@ class ClientHashHandler implements SOAPHandler<SOAPMessageContext> {
             signer.init(keySpec);
             signer.update(toSignBytes);
             byte[] signBytes = signer.doFinal();
-            String signature = new String(Base64.encodeBase64(signBytes));
-            return signature;
+            return new String(Base64.encodeBase64(signBytes));
         } catch (Exception e) {
             throw new RuntimeException("NoSuchAlgorithmException thrown.", e);
         }
@@ -147,5 +158,78 @@ class ClientHashHandler implements SOAPHandler<SOAPMessageContext> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+}
+
+
+class IdHandler implements LogicalHandler<LogicalMessageContext> {
+
+    @Override
+    public void close(MessageContext mctx) {
+    }
+
+
+    @Override
+    public boolean handleFault(LogicalMessageContext lmctx) {
+        return true;
+    }
+
+
+    @Override
+    public boolean handleMessage(LogicalMessageContext lmctx) {
+        Boolean outbound = (Boolean)lmctx.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
+        if (outbound) { // request?
+            LogicalMessage msg = lmctx.getMessage();
+            try {
+                JAXBContext jaxbCtx = JAXBContext.newInstance("com.up_and_running.ch5.prediction.client");
+                Object payload = msg.getPayload(jaxbCtx);
+                // Check payload to be sure it's what we want.
+                if (payload instanceof JAXBElement) {
+                    Object value = ((JAXBElement)payload).getValue();
+                    // Three possibilities of interest: GetOne, Edit, or Delete
+                    int id = 0;
+                    boolean getOne, edit;
+                    getOne = edit = false;
+                    if (value.toString().contains("GetOne")) {
+                        id = ((GetOne)value).getArg0();
+                        getOne = true;
+                    } else if (value.toString().contains("Edit")) {
+                        id = ((Edit)value).getArg0();
+                        edit = true;
+                    } else if (value.toString().contains("Delete")) {
+                        id = ((Delete)value).getArg0();
+                    } else {
+                        return true; // GetAll or Create
+                    }
+                    // If id > 0, there is no problem to fix on the client side.
+                    if (id > 0) {
+                        return true;
+                    }
+                    // If the request is GetOne, Edit, or Delete and the id is zero,
+                    // there is a problem that cannot be fixed.
+                    if (id == 0) // can't fix
+                    {
+                        throw new RuntimeException("ID cannot be zero!");
+                    }
+                    // id < 0 and operation is GetOne, Edit, or Delete
+                    int newId = Math.abs(id);
+                    if (getOne) {
+                        // Update argument.
+                        ((GetOne)value).setArg0(newId);
+                    } else if (edit) {
+                        ((Edit)value).setArg0(newId);
+                    } else {
+                        ((Delete)value).setArg0(newId);
+                        // Update payload.
+                    }
+                    ((JAXBElement)payload).setValue(value);
+                    // Update message
+                    msg.setPayload(payload, jaxbCtx);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return true;
     }
 }

@@ -51,6 +51,11 @@ public class PredictionsClient {
     private void getOneTest(PredictionsSOAP port) {
         msg("getOne (31)");
         System.out.println(port.getOne(31).getWhat());
+        try {
+            System.out.println(port.getOne(0).getWhat());
+        } catch (Exception e) {
+            System.out.println("ERROR: id 0 catched by IdHandler: " + e.getMessage());
+        }
     }
 
 
